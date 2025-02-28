@@ -6,6 +6,7 @@ import { formatDateTime } from "./../utils/dateUtils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { filterFestivals } from "../utils/searchUtils";
 import SearchBar from "../components/SearchBar";
+import { Link } from "react-router-dom";
 
 const MetalFestivalList = () => {
   const { data, isLoading, error } = useQueryFestivals({});
@@ -49,6 +50,8 @@ const MetalFestivalList = () => {
           {filteredFestivals.map((festival) => (
             <Grid.Col span={{ base: 12, md: 6, lg: 4 }} key={festival.id}>
               <Card
+                component={Link}
+                to={`/festivals/${festival.id}`}
                 shadow="sm"
                 padding="lg"
                 radius="md"
@@ -57,6 +60,9 @@ const MetalFestivalList = () => {
                   display: "flex",
                   flexDirection: "column",
                   height: "100%",
+                  transition: "transform 0.2s, box-shadow 0.2s",
+                  cursor: "pointer",
+                  textDecoration: "none",
                 }}
               >
                 <Title order={3}>
