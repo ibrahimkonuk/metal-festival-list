@@ -1,0 +1,64 @@
+{
+  "name": "metal-festival-list",
+  "version": "0.0.0",
+  "repository": {
+    "url": "git+https://github.com/ibrahimkonuk/metal-festival-list.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ibrahimkonuk/metal-festival-list/issues"
+  },
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "rsbuild dev --open --port 3000",
+    "test:watch": "jest --watch",
+    "build": "rsbuild build",
+    "preview": "rsbuild preview",
+    "lint": "eslint .",
+    "type-check": "npx tsc --noEmit --pretty --project . || exit 1",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-regular-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@mantine/core": "^7.17.0",
+    "@mantine/hooks": "^7.17.0",
+    "@tanstack/react-query": "^5.66.9",
+    "i18next": "^24.2.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-i18next": "^15.4.1",
+    "react-router-dom": "^7.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.20.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
+    "@rsbuild/core": "^1.2.4",
+    "@rsbuild/plugin-react": "^1.1.0",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.13.4",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@typescript-eslint/eslint-plugin": "^8.24.0",
+    "@typescript-eslint/parser": "^8.24.0",
+    "eslint": "^9.20.1",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-jest-dom": "^5.5.0",
+    "eslint-plugin-no-only-tests": "^3.3.0",
+    "eslint-plugin-prefer-arrow-functions": "^3.6.2",
+    "eslint-plugin-react": "^7.37.4",
+    "globals": "^15.14.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "prettier": "3.5.0",
+    "ts-jest": "^29.2.5",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.0"
+  }
+}
