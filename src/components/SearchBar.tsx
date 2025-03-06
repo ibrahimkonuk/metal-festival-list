@@ -1,24 +1,22 @@
 import { TextInput } from "@mantine/core";
-import { useState } from "react";
+import React from "react";
 
 interface SearchBarProps {
   placeholder: string;
   onSearch: (searchTerm: string) => void;
+  currentValue: string;
 }
 
-const SearchBar = ({ placeholder, onSearch }: SearchBarProps) => {
-  const [searchTerm, setSearchTerm] = useState("");
-
+const SearchBar = ({ placeholder, onSearch, currentValue }: SearchBarProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setSearchTerm(value);
     onSearch(value);
   };
 
   return (
     <TextInput
       placeholder={placeholder}
-      value={searchTerm}
+      value={currentValue}
       onChange={handleChange}
       mb="md"
     />

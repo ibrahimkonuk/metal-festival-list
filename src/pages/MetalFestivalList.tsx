@@ -1,22 +1,21 @@
-import { useState } from "react";
 import { useQueryFestivals } from "../api/generated/apiComponents";
 import { Card, Grid, LoadingOverlay, Text, Title, Alert } from "@mantine/core";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { formatDateTime } from "./../utils/dateUtils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { filterFestivals } from "../utils/searchUtils";
 import SearchBar from "../components/SearchBar";
 import { Link } from "react-router-dom";
+import useFestivalSearch from "../hooks/useFestivalSearch";
 
 const MetalFestivalList = () => {
   const { data, isLoading, error } = useQueryFestivals({});
-  const [searchTerm, setSearchTerm] = useState("");
+  const { filteredFestivals, setSearchTerm, searchTerm } =
+    useFestivalSearch(data);
 
   if (isLoading) {
     return (
       <div role="status" aria-label="Loading festivals">
         <LoadingOverlay visible={true} />
-        Loading festivals...
       </div>
     );
   }
@@ -33,8 +32,6 @@ const MetalFestivalList = () => {
     );
   }
 
-  const filteredFestivals = filterFestivals(data || [], searchTerm);
-
   return (
     <div style={{ position: "relative", margin: 20 }}>
       <Title order={1} mb="md">
@@ -44,6 +41,7 @@ const MetalFestivalList = () => {
       <SearchBar
         placeholder="Search festivals by name, city, country, or info..."
         onSearch={setSearchTerm}
+        currentValue={searchTerm}
       />
       {filteredFestivals && (
         <Grid>
