@@ -19,7 +19,6 @@ const FestivalDetailPage = () => {
     return (
       <div role="status" aria-label="Loading festival details">
         <LoadingOverlay visible={true} />
-        Loading festival details...
       </div>
     );
   }
