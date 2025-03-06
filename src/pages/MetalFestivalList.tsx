@@ -6,8 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SearchBar from "../components/SearchBar";
 import { Link } from "react-router-dom";
 import useFestivalSearch from "../hooks/useFestivalSearch";
+import { ReactElement } from "react";
 
-const MetalFestivalList = () => {
+const MetalFestivalList = (): ReactElement => {
   const { data, isLoading, error } = useQueryFestivals({});
   const { filteredFestivals, setSearchTerm, searchTerm } =
     useFestivalSearch(data);

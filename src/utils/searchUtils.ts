@@ -1,4 +1,4 @@
-import { FestivalsResponseType } from "src/api";
+import { FestivalsResponseType, FestivalType } from "src/api";
 
 /**
  * Filters an array of festivals based on a search term.
@@ -8,10 +8,10 @@ import { FestivalsResponseType } from "src/api";
  * @param searchTerm - The search term to filter by.
  * @returns The filtered array of festivals.
  */
-export function filterFestivals(
+export const filterFestivals = (
   festivals: FestivalsResponseType | undefined,
   searchTerm: string,
-) {
+): FestivalType[] => {
   if (!festivals) return [];
   if (!searchTerm) return festivals;
 
@@ -33,4 +33,4 @@ export function filterFestivals(
 
     return nameMatch || cityMatch || countryMatch || infoMatch;
   });
-}
+};

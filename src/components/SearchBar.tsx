@@ -1,13 +1,17 @@
 import { TextInput } from "@mantine/core";
-import React from "react";
+import React, { ReactElement } from "react";
 
-interface SearchBarProps {
+type SearchBarProps = {
   placeholder: string;
-  onSearch: (searchTerm: string) => void;
+  onSearch: (_searchTerm: string) => void;
   currentValue: string;
-}
+};
 
-const SearchBar = ({ placeholder, onSearch, currentValue }: SearchBarProps) => {
+const SearchBar = ({
+  placeholder,
+  onSearch,
+  currentValue,
+}: SearchBarProps): ReactElement => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     onSearch(value);

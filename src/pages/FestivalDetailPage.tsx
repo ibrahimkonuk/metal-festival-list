@@ -4,8 +4,9 @@ import { Card, Grid, LoadingOverlay, Text, Title, Alert } from "@mantine/core";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDateTime } from "../utils/dateUtils";
+import { ReactElement } from "react";
 
-const FestivalDetailPage = () => {
+const FestivalDetailPage = (): ReactElement => {
   const { id } = useParams<{ id: string }>();
   const {
     data: festivals,
