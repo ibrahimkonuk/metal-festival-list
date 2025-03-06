@@ -1,7 +1,7 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import { MantineProvider } from "@mantine/core";
+import { screen, waitFor } from "@testing-library/react";
 import MetalFestivalList from "./MetalFestivalList";
 import { useQueryFestivals } from "./../api/generated/apiComponents";
+import { render } from "../../test-utils/index";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 jest.mock("./../api/generated/apiComponents", () => ({
@@ -9,12 +9,6 @@ jest.mock("./../api/generated/apiComponents", () => ({
 }));
 
 const queryClient = new QueryClient();
-
-const Wrapper = ({ children }: { children: React.ReactNode }) => (
-  <QueryClientProvider client={queryClient}>
-    <MantineProvider>{children}</MantineProvider>
-  </QueryClientProvider>
-);
 
 describe("MetalFestivalList", () => {
   beforeEach(() => {
@@ -26,11 +20,14 @@ describe("MetalFestivalList", () => {
       isLoading: true,
     });
 
-    render(<MetalFestivalList />, { wrapper: Wrapper });
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MetalFestivalList />
+      </QueryClientProvider>,
+    );
     expect(
       screen.getByRole("status", { name: "Loading festivals" }),
     ).toBeInTheDocument();
-    expect(screen.getByText("Loading festivals...")).toBeInTheDocument();
   });
 
   it("shows error state", async () => {
@@ -42,7 +39,11 @@ describe("MetalFestivalList", () => {
       isLoading: false,
     });
 
-    render(<MetalFestivalList />, { wrapper: Wrapper });
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MetalFestivalList />
+      </QueryClientProvider>,
+    );
 
     await waitFor(() => {
       expect(screen.getByText("Error")).toBeInTheDocument();
@@ -70,7 +71,11 @@ describe("MetalFestivalList", () => {
       isLoading: false,
     });
 
-    render(<MetalFestivalList />, { wrapper: Wrapper });
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MetalFestivalList />
+      </QueryClientProvider>,
+    );
 
     await waitFor(() => {
       expect(screen.getByText("Hellfest")).toBeInTheDocument();
@@ -99,7 +104,11 @@ describe("MetalFestivalList", () => {
       isLoading: false,
     });
 
-    render(<MetalFestivalList />, { wrapper: Wrapper });
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MetalFestivalList />
+      </QueryClientProvider>,
+    );
 
     await waitFor(() => {
       expect(

@@ -1,24 +1,28 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { MantineProvider } from "@mantine/core";
+import { screen, fireEvent } from "@testing-library/react";
 import SearchBar from "./SearchBar";
-
-const Wrapper = ({ children }: { children: React.ReactNode }) => (
-  <MantineProvider>{children}</MantineProvider>
-);
+import { render } from "../../test-utils/index";
 
 describe("SearchBar", () => {
   it("shows the search input with provided placeholder", () => {
-    render(<SearchBar placeholder="Find festival" onSearch={jest.fn()} />, {
-      wrapper: Wrapper,
-    });
+    render(
+      <SearchBar
+        placeholder="Find festival"
+        onSearch={jest.fn()}
+        currentValue={""}
+      />,
+    );
     expect(screen.getByPlaceholderText("Find festival")).toBeInTheDocument();
   });
 
   it("triggers onSearch callback with input value", () => {
     const mockSearch = jest.fn();
-    render(<SearchBar placeholder="Search" onSearch={mockSearch} />, {
-      wrapper: Wrapper,
-    });
+    render(
+      <SearchBar
+        placeholder="Search"
+        onSearch={mockSearch}
+        currentValue={""}
+      />,
+    );
 
     const input = screen.getByPlaceholderText("Search");
     fireEvent.change(input, { target: { value: "Metallica" } });

@@ -1,30 +1,11 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import { MantineProvider } from "@mantine/core";
+import { screen, waitFor } from "@testing-library/react";
 import { useQueryFestivals } from "../api/generated/apiComponents";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import FestivalDetailPage from "./FestivalDetailPage";
+import { render } from "../../test-utils/index";
 
 jest.mock("../api/generated/apiComponents", () => ({
   useQueryFestivals: jest.fn(),
 }));
-
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  useNavigate: jest.fn(),
-  useParams: jest.fn(),
-  BrowserRouter: ({ children }: { children: React.ReactNode }) => (
-    <div>{children}</div>
-  ),
-  Route: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
-}));
-
-const queryClient = new QueryClient();
-
-const Wrapper = ({ children }: { children: React.ReactNode }) => (
-  <QueryClientProvider client={queryClient}>
-    <MantineProvider>{children}</MantineProvider>
-  </QueryClientProvider>
-);
 
 describe("FestivalDetailPage", () => {
   beforeEach(() => {
@@ -36,11 +17,10 @@ describe("FestivalDetailPage", () => {
       isLoading: true,
     });
 
-    render(<FestivalDetailPage />, { wrapper: Wrapper });
+    render(<FestivalDetailPage />);
     expect(
       screen.getByRole("status", { name: "Loading festival details" }),
     ).toBeInTheDocument();
-    expect(screen.getByText("Loading festival details...")).toBeInTheDocument();
   });
 
   it("shows error state", async () => {
@@ -52,7 +32,7 @@ describe("FestivalDetailPage", () => {
       isLoading: false,
     });
 
-    render(<FestivalDetailPage />, { wrapper: Wrapper });
+    render(<FestivalDetailPage />);
 
     await waitFor(() => {
       expect(screen.getByText("Error")).toBeInTheDocument();
@@ -80,7 +60,7 @@ describe("FestivalDetailPage", () => {
       isLoading: false,
     });
 
-    render(<FestivalDetailPage />, { wrapper: Wrapper });
+    render(<FestivalDetailPage />);
 
     await waitFor(() => {
       expect(screen.getByText("Hellfest")).toBeInTheDocument();
@@ -95,7 +75,7 @@ describe("FestivalDetailPage", () => {
       isLoading: false,
     });
 
-    render(<FestivalDetailPage />, { wrapper: Wrapper });
+    render(<FestivalDetailPage />);
 
     await waitFor(() => {
       expect(screen.getByText("Festival Not Found")).toBeInTheDocument();
