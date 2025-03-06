@@ -1,6 +1,7 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import en from './locales/en/common.json';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import en from "./locales/en/common.json";
+import de from "./locales/de/common.json";
 
 const resources = {
   en: {
@@ -8,11 +9,16 @@ const resources = {
       ...en,
     },
   },
+  de: {
+    translation: {
+      ...de,
+    },
+  },
 };
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: 'en',
+  lng: "en",
 
   interpolation: {
     escapeValue: false,
